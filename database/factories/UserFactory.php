@@ -18,6 +18,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+
             'name'              => fake()->name(),
             'last_name'         => fake()->lastName(),
             'phone_number'      => fake()->phoneNumber(),
@@ -25,6 +26,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password'          => bcrypt('password'), // password
             'remember_token'    => Str::random(10),
+            
         ];
     }
 

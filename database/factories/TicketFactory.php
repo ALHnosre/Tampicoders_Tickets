@@ -17,12 +17,14 @@ class TicketFactory extends Factory
     public function definition(): array
     {
         return [
+
             'subject'       => fake()->text(),
             'details'       => fake()->paragraph(),
             'assigned_to'   => fake()->randomNumber(),
             'priority'      => fake()->randomNumber(),
             'created_at'    => now(),
             'updated_at'    => null, // password
+            
         ];
     }
 }

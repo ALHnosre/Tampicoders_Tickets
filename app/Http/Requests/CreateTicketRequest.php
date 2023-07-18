@@ -22,19 +22,23 @@ class CreateTicketRequest extends FormRequest
     public function rules(): array
     {
         return [
-                'subject'               => 'required',
-                'details'               => 'required',
-                'assigned_to'           => 'required',
-                'priority'              => 'required',
+
+            'subject'               => 'required',
+            'details'               => 'required',
+            'assigned_to'           => 'required',
+            'priority'              => 'required',
+
             ];
     }
 
     public function messages(): array{
         return[
+
             'subject.required'         => 'El ticket necesita tener un asunto',
             'details.required'         => 'El ticket debe tener un contenido/detalles/descripcion', 
-            'assigned_to.required'     => 'El ticket debe estar asignado a alguien',
-            'priority'                 => 'Es necesario asignar el nivel de prioridad del ticket'
+            'assigned_to.required'     => 'El ticket debe estar asignado a alguien por su ID',
+            'priority'                 => 'Es necesario asignar el nivel de prioridad del ticket / valor numerico'
+
             ];
     }
 }

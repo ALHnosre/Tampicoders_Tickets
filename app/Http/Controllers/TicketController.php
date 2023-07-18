@@ -33,16 +33,20 @@ class TicketController extends Controller
                 'assigned_to',
                 'priority',
             ]));
+
             return response()->json([
                 'error' => false,
                 'user'  => $newTicket,
             ], Response::HTTP_OK);
-        }catch(\Exception $error){
+
+        }
+        catch(\Exception $error){
 
             return response()->json([
                 'error'     => true,
                 'message'   => 'Hubo un error al crear el ticket. Mensaje : '.$error->getMessage()
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
+
     }
 }
 
@@ -52,27 +56,32 @@ class TicketController extends Controller
     public function store(Request $request)
     {
         try{
+
             $validateData = validator([
-                'subject'           => 'required|max:40|alpha',
-                'assigned_to'       => 'required|integer' #Dudas aqui!
+                'subject'               => 'required|max:40|alpha',
+                'assigned_to'           => 'required|integer' #Dudas aqui!
             ]);
+
             $newTicket = new Ticket();
-            $newTicket->subject     = $validateData['subject'];
-            $newTicket->details     = $request->description;
-            $newTicket->assigned_to = $validateData['assigned_to'];
-            $newTicket->priority    = $request->priority;
+            $newTicket->subject         = $validateData['subject'];
+            $newTicket->details         = $request->description;
+            $newTicket->assigned_to     = $validateData['assigned_to'];
+            $newTicket->priority        = $request->priority;
             $newTicket->save();
 
             return response()-> json([
                 'error' => false,
                 'Ticket' => $newTicket,
             ], Response:: HTTP_OK);
+
         }
         catch(\Exception $error){
+
             return response()->json([
-                'error'     => true,
-                'message'   => 'Hubo un error al crear el ticket. Mensaje : '.$error->getMessage()
+                'error'                 => true,
+                'message'               => 'Hubo un error al crear el ticket. Mensaje: '.$error->getMessage()
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
+
         }
     }
 
@@ -82,15 +91,20 @@ class TicketController extends Controller
     public function show(string $id)
     {
         try{
+
             return response()->json([
-            'error' => false,
-            'users' => Ticket::findOrFail($id),
+                'error' => false,
+                'users' => Ticket::findOrFail($id),
             ], Response::HTTP_OK); 
-        }catch(\Exception $error){
+
+        }
+        catch(\Exception $error){
+
             return response()->json([
                 'error' => true,
                 'message' => 'Ticket no encontrado',
-                ], Response::HTTP_NOT_FOUND); 
+            ], Response::HTTP_NOT_FOUND); 
+
     }
     }
     /**
