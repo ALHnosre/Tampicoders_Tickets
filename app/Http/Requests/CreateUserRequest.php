@@ -38,9 +38,9 @@ class CreateUserRequest extends FormRequest
     {
         return[
 
-            'name.alpha:ascii'      => 'El nombre del usuario solo acepta caracteres de la A-Z',
+            'name.alpha:ascii'      =>  'El nombre del usuario solo acepta caracteres de la A-Z',
             'name.required'         =>  'El nombre del usuario es obligatorio',
-            'confirm_Email.same'    => 'Los email no coinciden'
+            'confirm_Email.same'    =>  'Los email no coinciden'
 
         ];
     }

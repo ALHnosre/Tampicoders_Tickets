@@ -26,28 +26,36 @@ class TicketController extends Controller
      */
     public function create(CreateTicketRequest $request)
     {
-        try{
-            $newTicket = Ticket::create($request->safe()->only([
-                'subject',
-                'details',
-                'assigned_to',
-                'priority',
-            ]));
+    //     try{
+    //         $newTicket = Ticket::create($request->safe()->only([
+    //             'subject',
+    //             'details',
+    //             'assigned_to',
+    //             'priority',
+    //         ]));
 
-            return response()->json([
-                'error' => false,
-                'user'  => $newTicket,
-            ], Response::HTTP_OK);
+    //         return response()->json([
+    //             'error' => false,
+    //             'user'  => $newTicket,
+    //         ], Response::HTTP_OK);
 
-        }
-        catch(\Exception $error){
+    //     }
+    //     catch(\Exception $error){
 
-            return response()->json([
-                'error'     => true,
-                'message'   => 'Hubo un error al crear el ticket. Mensaje : '.$error->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+    //         return response()->json([
+    //             'error'     => true,
+    //             'message'   => 'Hubo un error al crear el ticket. Mensaje : '.$error->getMessage()
+    //         ], Response::HTTP_INTERNAL_SERVER_ERROR);
 
-    }
+    // }
+    return rescue(fn ()=> Ticket::create($request->safe()->only([
+
+            'subject',
+            'details',
+            'assigned_to',
+            'priority',
+            
+    ])),report: true);
 }
 
     /**

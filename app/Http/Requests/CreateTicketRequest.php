@@ -37,7 +37,7 @@ class CreateTicketRequest extends FormRequest
             'subject.required'         => 'El ticket necesita tener un asunto',
             'details.required'         => 'El ticket debe tener un contenido/detalles/descripcion', 
             'assigned_to.required'     => 'El ticket debe estar asignado a alguien por su ID',
-            'priority'                 => 'Es necesario asignar el nivel de prioridad del ticket / valor numerico'
+            'priority.required'        => 'Es necesario asignar el nivel de prioridad del ticket / valor numerico'
 
             ];
     }
